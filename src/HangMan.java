@@ -4,11 +4,13 @@ public class HangMan {
 
     public void LoadLevel(int level,String challengeWord)
     {
-        System.out.printf("\n%50s\n","Level "+level);
+        System.out.printf("\n\n%50s\n","Level "+level);
+
+        HangMan.wait(1200);
 
         System.out.println("Your Challenge :- \n");
 
-        int totalChances=challengeWord.length()+1;
+        int totalChances=challengeWord.length();
 
         System.out.println("Total chances :- "+totalChances+"\n");
 
@@ -17,6 +19,7 @@ public class HangMan {
         for (int i = 0; i <challengeWord.length() ; i++) {
             guessWord.append("_");
         }
+
         Display(guessWord);
 
         System.out.println("\n\nNow, Start Guessing ... \n");
@@ -29,7 +32,7 @@ public class HangMan {
         Scanner scObj=new Scanner(System.in);
         while(chances>0)
         {
-            System.out.print("Enter guess character :- ");
+            System.out.print("Enter guessed character :- ");
             String letter = scObj.next();
             int[] matchedIndex=CheckLetter(word,letter.charAt(0));
             if(matchedIndex.length>0)
@@ -52,6 +55,18 @@ public class HangMan {
         {
             System.out.println("Better Luck Next Time ! ");
             System.exit(0);
+        }
+    }
+
+    public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -85,6 +100,7 @@ public class HangMan {
 
         for (int i = 0; i < size ; i++) {
             System.out.print(word.charAt(i));
+            HangMan.wait(700);
             if(i!=size-1){
                 System.out.print("\t");
             }
@@ -108,9 +124,9 @@ public class HangMan {
         //Declaring Scanner
         Scanner scannerObj = new Scanner(System.in);
         String Player1=scannerObj.nextLine();
-
         System.out.printf("\n%s\n","Starting Game ... ");
 
+        wait(1200);
         System.out.printf("\n%s\n","Welcome "+Player1);
 
         scannerObj.close();
@@ -119,6 +135,7 @@ public class HangMan {
 
         HangMan hg=new HangMan();
         for (int i = 0; i < 5; i++) {
+            wait(1200);
             hg.LoadLevel(i+1,data[i]);
         }
     }
