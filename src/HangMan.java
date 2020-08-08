@@ -6,7 +6,7 @@ public class HangMan {
     {
         System.out.printf("\n\n%50s\n","Level "+level);
 
-        HangMan.wait(1200);
+        HangMan.wait(1000);
 
         System.out.println("Your Challenge :- \n");
 
@@ -39,18 +39,19 @@ public class HangMan {
             {
                 for (int i = 0; i <matchedIndex.length ; i++)
                 {
-                    guessWord.insert(matchedIndex[i],letter.charAt(0));
+                    guessWord.replace(matchedIndex[i],matchedIndex[i]+1, String.valueOf(letter.charAt(0)));
                 }
             }
+            System.out.println();
             Display(guessWord);
             if(CheckGameOverStatus(word,guessWord)){
-                System.out.println("Congratulation ! You won ");
+                System.out.println("\nCongratulation ! You won ");
                 break;
             }
             chances--;
-            System.out.println("Chances Left :- "+chances+"\n");
+            System.out.println("\tChances Left :- "+chances+"\n");
         }
-        scObj.close();
+
         if(chances==0 && !CheckGameOverStatus(word,guessWord))
         {
             System.out.println("Better Luck Next Time ! ");
@@ -80,13 +81,13 @@ public class HangMan {
         int count=0;
         for (char c:
              word.toCharArray()) {
-            if(c==letter)
+            if(String.valueOf(c).equalsIgnoreCase(String.valueOf(letter)))
                 count++;
         }
         int[] matchedIndex=new int[count];
         int index=0;
         for (int j = 0; j <word.length() ; j++) {
-                if (word.charAt(j)==letter) {
+                if (String.valueOf(word.charAt(j)).equalsIgnoreCase(String.valueOf(letter))) {
                     matchedIndex[index]=j;
                     index++;
                 }
@@ -100,7 +101,7 @@ public class HangMan {
 
         for (int i = 0; i < size ; i++) {
             System.out.print(word.charAt(i));
-            HangMan.wait(700);
+            HangMan.wait(500);
             if(i!=size-1){
                 System.out.print("\t");
             }
@@ -126,17 +127,17 @@ public class HangMan {
         String Player1=scannerObj.nextLine();
         System.out.printf("\n%s\n","Starting Game ... ");
 
-        wait(1200);
+        wait(1000);
         System.out.printf("\n%s\n","Welcome "+Player1);
-
-        scannerObj.close();
 
         //Declaring Class Object
 
         HangMan hg=new HangMan();
         for (int i = 0; i < 5; i++) {
-            wait(1200);
+            wait(1000);
             hg.LoadLevel(i+1,data[i]);
         }
+
+        scannerObj.close();
     }
 }
