@@ -1,3 +1,4 @@
+\\Hangman game
 import java.util.Scanner;
 
 public class HangMan {
@@ -6,7 +7,7 @@ public class HangMan {
     {
         System.out.printf("\n\n%50s\n","Level "+level);
 
-        HangMan.wait(1000);
+        HangMan.wait(1100);
 
         System.out.println("Your Challenge :- "+Description+"\n");
 
@@ -30,6 +31,7 @@ public class HangMan {
     public  void Play(String word,StringBuffer guessWord,int chances)
     {
         Scanner scObj=new Scanner(System.in);
+
         while(chances>0)
         {
             System.out.print("Enter guessed character :- ");
